@@ -8,18 +8,29 @@ import data from './data.js';
 export default class App extends Component {
 
   state = {
-    dropdownSelection: '',
+    keyword: '',
+    horns: '',
   }
 
-  filterChoice = (e) => {
-    this.setState({ dropdownSelection: e.target.value })
+  keywordFilter = (e) => {
+    this.setState({ keyword: e.target.value });
+    console.log(this.state);
+  }
+  
+  hornsFilter = (e) => {
+    this.setState({ horns: Number(e.target.value) });
+    console.log(this.state);
   }
 
   render() {
-    let filteredData = data;
+    let filteredData = data.slice();
 
-    if (this.state.dropdownSelection) {
-      filteredData = data.filter(item => item.keyword === this.state.dropdownSelection);
+    if (this.state.keyword && !this.state.horns) {
+      filteredData = filteredData.filter(item => item.keyword === this.state.keyword);
+    } if (this.state.horns && !this.state.keyword) {
+      filteredData = filteredData.filter(item => item.horns === this.state.horns);
+    } if (this.state.keyword && this.state.horns) {
+      filteredData = filteredData.filter(item => ((item.keyword === this.state.keyword) && (item.horns === this.state.horns)));
     }
 
     return (
@@ -28,8 +39,9 @@ export default class App extends Component {
         { console.log(filteredData) }
         <Header />
 
-        <select onChange={this.filterChoice}>
-          <option value="">view all</option>
+        <label htmlFor="keyword">Type:</label>
+        <select id="keyword" onChange={this.keywordFilter}>
+          <option value="">all</option>
           <option value="narwhal">narwhal</option>
           <option value="rhino">rhino</option>
           <option value="unicorn">unicorn</option>
@@ -42,7 +54,19 @@ export default class App extends Component {
           <option value="lizard">lizard</option>
           <option value="dragon">dragon</option>
         </select>
+
+      <label htmlFor="horns">Horns:</label>
+      <select id="horns" onChange={this.hornsFilter}>
+        <option value="">any</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="100">many</option>
+      </select>
+
         <ImageList images={filteredData}/>
+
+
       </div>
     );
   }
