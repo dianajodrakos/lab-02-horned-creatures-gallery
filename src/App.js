@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Dropdown from './Dropdown.js';
 import Header from './Header.js';
 import ImageList from "./ImageList.js";
 import data from './data.js';
@@ -73,37 +74,10 @@ export default class App extends Component {
       <div className="App">
         <Header />
         <section>
-          <div className="filter">
-            <label htmlFor="keyword">Creature Type:</label>
-            <select id="keyword" onChange={this.keywordFilter}>
-              <option disabled selected value>all</option>
-            { filteredKeywords.map((item, i) =>
-            <option value={item} key={i}>{item}</option>
-            )}
-            </select>
-          </div>
-
-          <div className="filter">
-            <label htmlFor="horns">Number of Horns:</label>
-            <select id="horns" onChange={this.hornsFilter}>
-            <option disabled selected value>all</option>
-              { filteredHorns.map((item, i) =>
-              <option value={item} key={i}>{item}</option>
-              )}
-            </select>
-          </div>
-
-          <div className="filter">
-            <label htmlFor="title">Creature Title:</label>
-            <select id="title" onChange={this.titleFilter}>
-              <option disabled selected value>all</option>
-              { filteredTitles.map((item, i) =>
-              <option value={item} key={i}>{item}</option>
-              )}
-            </select>
-          </div>
-
-          <button onClick={this.resetFilter}>Reset Filters</button>
+          <Dropdown filter="keyword" label="Creature Type:" handleChange={this.keywordFilter} options={filteredKeywords} />
+          <Dropdown filter="horns" label="Number of Horns:" handleChange={this.hornsFilter} options={filteredHorns} />
+          <Dropdown filter="title" label="Creature Title:" handleChange={this.titleFilter} options={filteredTitles} />
+          <button onClick={this.resetFilter}><p className="button">Reset Filters</p></button>
 
         </section>
         <ImageList images={filteredData}/>
