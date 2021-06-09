@@ -14,19 +14,23 @@ body {
 
 .header {
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
   font-size: 48px;
   font-weight: bolder;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
   width: 100%;
 }
