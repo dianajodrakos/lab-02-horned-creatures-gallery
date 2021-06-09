@@ -45,67 +45,52 @@ export default class App extends Component {
       filteredData = filteredData.filter(item => item.title === this.state.title);
     }
 
+
     let filteredKeywords = [];
   
-  for (let item of filteredData) {
-    if (!filteredKeywords.includes(item.keyword)) {
-      filteredKeywords.push(item.keyword)
+    for (let item of filteredData) {
+      if (!filteredKeywords.includes(item.keyword)) {
+        filteredKeywords.push(item.keyword)
+      }
     }
-  }
 
     let filteredHorns = [];
   
-  for (let item of filteredData) {
-    if (!filteredHorns.includes(item.horns)) {
-      filteredHorns.push(item.horns)
+    for (let item of filteredData) {
+      if (!filteredHorns.includes(item.horns)) {
+        filteredHorns.push(item.horns)
+      }
     }
-  }
 
-  let filteredTitles = [];
+    let filteredTitles = [];
 
-  for (let item of filteredData) {
-    if (!filteredTitles.includes(item.title)) {
-      filteredTitles.push(item.title)
+    for (let item of filteredData) {
+      if (!filteredTitles.includes(item.title)) {
+        filteredTitles.push(item.title)
+      }
     }
-  }
+
+    let searchFilterArray = [ 
+      { filter: 'keyword',
+        label: 'Creature Type:',
+        handleChange: this.keywordFilter,
+        options: filteredKeywords,
+    }, 
+      { filter: 'horns',
+        label: 'Number of Horns:',
+        handleChange: this.hornsFilter,
+        options: filteredHorns,
+    }, 
+      { filter: 'title',
+        label: 'Creature Title:',
+        handleChange: this.titleFilter,
+        options: filteredTitles,
+    }, 
+  ]
 
     return (
       <div className="App">
-        <Header />
-        <section>
-          <div className="filter">
-            <label htmlFor="keyword">Creature Type:</label>
-            <select id="keyword" onChange={this.keywordFilter}>
-              <option disabled selected value>all</option>
-            { filteredKeywords.map((item, i) =>
-            <option value={item} key={i}>{item}</option>
-            )}
-            </select>
-          </div>
-
-          <div className="filter">
-            <label htmlFor="horns">Number of Horns:</label>
-            <select id="horns" onChange={this.hornsFilter}>
-            <option disabled selected value>all</option>
-              { filteredHorns.map((item, i) =>
-              <option value={item} key={i}>{item}</option>
-              )}
-            </select>
-          </div>
-
-          <div className="filter">
-            <label htmlFor="title">Creature Title:</label>
-            <select id="title" onChange={this.titleFilter}>
-              <option disabled selected value>all</option>
-              { filteredTitles.map((item, i) =>
-              <option value={item} key={i}>{item}</option>
-              )}
-            </select>
-          </div>
-
-          <button onClick={this.resetFilter}>Reset Filters</button>
-
-        </section>
+        <Header data={searchFilterArray} reset={this.resetFilter}/>
         <ImageList images={filteredData}/>
 
 
