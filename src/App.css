@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 .App {
   display: flex;
   flex-direction: column;
@@ -7,11 +10,12 @@
 
 body {
   color: blue;
+  font-family: 'DM Mono', monospace;
 }
 
 .header {
   height: 70px;
-  font-size: 30px;
+  font-size: 48px;
   font-weight: bolder;
   display: flex;
   justify-content: center;
@@ -28,26 +32,46 @@ body {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: white;
-  background-color:blue;
-  border: 15px solid blue;
-  border-radius: 20px;
+  background-image: linear-gradient(45deg, aquamarine, aqua, mediumpurple, darkviolet);
+  border: 5px solid blue;
+  border-radius: 25px;
   width: 250px;
   height: fit-content;
   margin: 20px 5px;
+  padding: 10px;
   overflow: hidden;
 }
 
 .card img {
+  /* box-sizing: border-box; */
   width: 100%;
   height: auto;
-  border-radius: 15px ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   overflow: hidden;
 }
 
+.card-text {
+  background: rgb(0, 0, 255);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 10px 0;
+}
+
 .card h2 {
+  margin: 0 10px 10px 10px;
   font-size: 1.2rem;
-  color:white;
+  font-weight: bolder;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(135deg, hotpink, aquamarine,  mediumpurple);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .card h3 {
@@ -66,7 +90,7 @@ body {
 
 .card p {
   margin: 10px;
-  text-align: justify;
+  text-align: left;
   font-size: .8rem;
 }
 
@@ -85,4 +109,24 @@ body {
 
 select {
   margin: 5px;
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px;
+  background: blue;
+  border: 2px solid blue;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  color: blue;
+  background-color:cyan;
+}
+
+button:active {
+  background-color: blue;
 }
