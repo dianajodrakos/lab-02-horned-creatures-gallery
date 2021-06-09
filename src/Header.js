@@ -12,7 +12,7 @@ export default class Header extends Component {
                     <Dropdown 
                     filter={item.filter} 
                     label={item.label} 
-                    handleChange={item.handler}
+                    handleChange={item.handleChange}
                     options={item.options} 
                     key={i}/>
                     )}
