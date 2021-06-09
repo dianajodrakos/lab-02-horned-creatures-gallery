@@ -24,6 +24,8 @@ export default class App extends Component {
 
     return (
       <div className="App">
+        { console.log(this.state) }
+        { console.log(filteredData) }
         <Header />
 
         <select onChange={this.filterChoice}>
